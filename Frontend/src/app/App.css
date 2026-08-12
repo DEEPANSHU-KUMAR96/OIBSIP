@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #9e0027;
+  --color-primary-container: #c41e3a;
+  --color-on-primary: #ffffff;
+  --color-surface: #fff8f5;
+  --color-surface-variant: #e9e1dc;
+  --color-on-surface: #1e1b18;
+  --color-on-surface-variant: #5b4040;
+  --color-outline-variant: #e3bebd;
+  --color-error-container: #ffdad6;
+  --color-on-error-container: #93000a;
+}
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #fff8f5;
+  color: #1e1b18;
+}
+
+.font-display {
+  font-family: 'Playfair Display', serif;
+}
+
+.font-body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+/* Custom focus ring for inputs */
+.auth-input-field:focus {
+  outline: none;
+  border-color: #c41e3a !important;
+  box-shadow: 0 0 0 4px rgba(196, 30, 58, 0.12) !important;
+}
+
+/* Glassmorphism helpers */
+.glass-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(227, 190, 189, 0.4);
+}
+
+/* Smooth fade animation */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out forwards;
+}
