@@ -20,12 +20,34 @@ import {
     clearSuccess
 } from "../state/order.slice";
 import {
-    createOrder as createOrderApi,
+    createRazorpayOrder,
+    verifyRazorpayPayment,
     getMyOrders as getMyOrdersApi,
     getAllOrders as getAllOrdersApi,
     updateOrderStatus as updateOrderStatusApi
 } from "../services/order.api";
 import { fetchActiveInventory } from "../../inventory/services/inventory.api";
+
+const loadRazorpayScript = () => new Promise((resolve, reject) => {
+    if (window.Razorpay) {
+        resolve();
+        return;
+    }
+
+    const existingScript = document.querySelector('script[src="https://checkout.razorpay.com/v1/checkout.js"]');
+    if (existingScript) {
+        existingScript.addEventListener('load', resolve, { once: true });
+        existingScript.addEventListener('error', () => reject(new Error('Failed to load Razorpay checkout script.')), { once: true });
+        return;
+    }
+
+    const script = document.createElement('script');
+    script.src = 'https://checkout.razorpay.com/v1/checkout.js';
+    script.async = true;
+    script.onload = resolve;
+    script.onerror = () => reject(new Error('Failed to load Razorpay checkout script.'));
+    document.body.appendChild(script);
+});
 
 export function useOrder() {
     const dispatch = useDispatch();
@@ -132,19 +154,63 @@ export function useOrder() {
                 totalPrice
             };
 
-            const createdOrder = await createOrderApi(orderPayload);
-            dispatch(addOrder(createdOrder));
-            dispatch(setSuccess("Order placed successfully! Check tracking in My Orders."));
-            dispatch(resetCustomization());
-            
-            // Refresh inventory after stock reduction
-            await loadInventory();
-            return createdOrder;
+            await loadRazorpayScript();
+
+            const paymentOrder = await createRazorpayOrder(orderPayload);
+            const razorpayKeyId = import.meta.env.VITE_RAZORPAY_KEY_ID || 'rzp_test_Si481zHvFP4298';
+
+            return await new Promise((resolve, reject) => {
+                const options = {
+                    key: razorpayKeyId,
+                    amount: paymentOrder.razorpayOrder.amount,
+                    currency: paymentOrder.razorpayOrder.currency,
+                    name: 'PIZZADelivery',
+                    description: 'Pizza order payment',
+                    order_id: paymentOrder.razorpayOrder.id,
+                    handler: async function (response) {
+                        try {
+                            const paymentResult = await verifyRazorpayPayment({
+                                orderId: paymentOrder.order._id,
+                                razorpayOrderId: response.razorpay_order_id,
+                                razorpayPaymentId: response.razorpay_payment_id,
+                                razorpaySignature: response.razorpay_signature,
+                            });
+
+                            dispatch(addOrder(paymentResult.order));
+                            dispatch(setSuccess("Payment successful! Your pizza order is confirmed."));
+                            dispatch(resetCustomization());
+                            await loadInventory();
+                            dispatch(setPlacingOrder(false));
+                            resolve(paymentResult.order);
+                        } catch (error) {
+                            dispatch(setError(error.message || 'Payment verification failed.'));
+                            dispatch(setPlacingOrder(false));
+                            reject(error);
+                        }
+                    },
+                    prefill: {
+                        name: 'Pizza Customer',
+                        email: 'customer@example.com',
+                    },
+                    theme: {
+                        color: '#9e0027',
+                    },
+                    modal: {
+                        ondismiss: () => {
+                            dispatch(setError('Payment was cancelled. Please try again.'));
+                            dispatch(setPlacingOrder(false));
+                            reject(new Error('Payment was cancelled by the user.'));
+                        },
+                    },
+                };
+
+                const razorpay = new window.Razorpay(options);
+                razorpay.open();
+            });
         } catch (err) {
-            dispatch(setError(err.message));
-            throw err;
-        } finally {
+            dispatch(setError(err.message || 'Payment failed. Please try again.'));
             dispatch(setPlacingOrder(false));
+            throw err;
         }
     };
 

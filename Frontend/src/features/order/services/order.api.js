@@ -23,6 +23,31 @@ export async function createOrder({ base, sauce, cheese, veggies, totalPrice }) 
     }
 }
 
+export async function createRazorpayOrder({ base, sauce, cheese, veggies, totalPrice }) {
+    try {
+        const response = await orderApiInstance.post('/create-payment-order', { base, sauce, cheese, veggies, totalPrice });
+        return response.data;
+    } catch (error) {
+        const message = error.response?.data?.message || error.message || "Failed to create Razorpay payment order";
+        throw new Error(message);
+    }
+}
+
+export async function verifyRazorpayPayment({ orderId, razorpayOrderId, razorpayPaymentId, razorpaySignature }) {
+    try {
+        const response = await orderApiInstance.post('/verify-payment', {
+            orderId,
+            razorpayOrderId,
+            razorpayPaymentId,
+            razorpaySignature,
+        });
+        return response.data;
+    } catch (error) {
+        const message = error.response?.data?.message || error.message || "Payment verification failed";
+        throw new Error(message);
+    }
+}
+
 export async function getMyOrders() {
     try {
         const response = await orderApiInstance.get('/my-orders');
