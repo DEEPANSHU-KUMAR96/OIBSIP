@@ -1,4 +1,4 @@
-import InventoryItem from '../models/inventoryitem.model.js';
+import InventoryItem from '../models/InventoryItem.model.js';
 
 // @route   GET /api/inventory
 // @desc    show all active items

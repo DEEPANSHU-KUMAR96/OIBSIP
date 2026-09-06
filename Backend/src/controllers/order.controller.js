@@ -2,7 +2,7 @@
 import crypto from 'crypto';
 import Razorpay from 'razorpay';
 import Order from '../models/order.model.js';
-import InventoryItem from '../models/inventoryitem.model.js';
+import InventoryItem from '../models/InventoryItem.model.js';
 import { config } from '../config/config.js';
 
 const razorpay = new Razorpay({
