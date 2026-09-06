@@ -1,4 +1,3 @@
-
 import InventoryItem from '../models/inventoryitem.model.js';
 
 // @route   GET /api/inventory
