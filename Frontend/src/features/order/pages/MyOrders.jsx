@@ -152,8 +152,8 @@ export default function MyOrders() {
                                             <div className="relative z-10 flex flex-col items-center gap-1.5 bg-[#fff8f5] px-2">
                                                 <div
                                                     className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shadow-xs transition-all ${stepIndex >= 1
-                                                            ? 'bg-[#9e0027] text-white ring-4 ring-[#ffdad6]'
-                                                            : 'bg-[#e9e1dc] text-[#5b4040]'
+                                                        ? 'bg-[#9e0027] text-white ring-4 ring-[#ffdad6]'
+                                                        : 'bg-[#e9e1dc] text-[#5b4040]'
                                                         }`}
                                                 >
                                                     <CheckCircle2 className="w-5 h-5" />
@@ -167,8 +167,8 @@ export default function MyOrders() {
                                             <div className="relative z-10 flex flex-col items-center gap-1.5 bg-[#fff8f5] px-2">
                                                 <div
                                                     className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shadow-xs transition-all ${stepIndex >= 2
-                                                            ? 'bg-[#9e0027] text-white ring-4 ring-[#ffdad6]'
-                                                            : 'bg-[#e9e1dc] text-[#5b4040]'
+                                                        ? 'bg-[#9e0027] text-white ring-4 ring-[#ffdad6]'
+                                                        : 'bg-[#e9e1dc] text-[#5b4040]'
                                                         }`}
                                                 >
                                                     <Utensils className="w-4 h-4" />
@@ -182,8 +182,8 @@ export default function MyOrders() {
                                             <div className="relative z-10 flex flex-col items-center gap-1.5 bg-[#fff8f5] px-2">
                                                 <div
                                                     className={`w-9 h-9 rounded-full flex items-center justify-center text-xs font-bold shadow-xs transition-all ${stepIndex >= 3
-                                                            ? 'bg-[#9e0027] text-white ring-4 ring-[#ffdad6]'
-                                                            : 'bg-[#e9e1dc] text-[#5b4040]'
+                                                        ? 'bg-[#9e0027] text-white ring-4 ring-[#ffdad6]'
+                                                        : 'bg-[#e9e1dc] text-[#5b4040]'
                                                         }`}
                                                 >
                                                     <Truck className="w-4 h-4" />

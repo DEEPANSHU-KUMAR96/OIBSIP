@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { login as loginAction, logout as logoutAction, setUser, setLoading, setError, clearError } from '../state/auth.slice';
+import { login as loginAction, logout as logoutAction, setUser, setToken, setLoading, setError, clearError } from '../state/auth.slice';
 import { register as registerApi, login as loginApi, logout as logoutApi, getMe as getMeApi } from '../services/auth.api';
 
 export function useAuth() {
@@ -61,6 +61,23 @@ export function useAuth() {
         }
     }
 
+    async function handleOAuthSuccess(accessToken) {
+        dispatch(setLoading(true));
+        dispatch(clearError());
+        try {
+            localStorage.setItem('accessToken', accessToken);
+            dispatch(setToken(accessToken));
+            const userData = await getMeApi();
+            dispatch(setUser(userData));
+            return userData;
+        } catch (err) {
+            dispatch(setError(err.message || 'Google authentication failed'));
+            throw err;
+        } finally {
+            dispatch(setLoading(false));
+        }
+    }
+
     function clearAuthError() {
         dispatch(clearError());
     }
@@ -75,6 +92,7 @@ export function useAuth() {
         handleLogin,
         handleLogout,
         handleGetMe,
+        handleOAuthSuccess,
         clearAuthError
     };
 }

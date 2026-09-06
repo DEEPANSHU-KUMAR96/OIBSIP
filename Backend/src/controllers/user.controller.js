@@ -1,5 +1,7 @@
 import jwt from 'jsonwebtoken';
+import crypto from 'crypto';
 import User from '../models/user.model.js';
+import { config } from '../config/config.js';
 import { generateAccessToken, generateRefreshToken } from '../utils/generateToken.js';
 
 const refreshCookieOptions = {
@@ -177,3 +179,36 @@ export const logoutUser = async (req, res) => {
       });
   }
 };
+
+
+export const googleCallback = async (req, res) => {
+  try {
+    const email = req.user.emails?.[0]?.value;
+    const name = req.user.displayName || email?.split('@')[0];
+
+    if (!email || !name) {
+      return res.status(400).json({ message: 'Google account did not provide an email' });
+    }
+
+    let user = await User.findOne({ email });
+
+    if (!user) {
+      user = await User.create({
+        name,
+        email,
+        password: crypto.randomBytes(32).toString('hex'),
+        isVerified: true,
+      });
+    }
+
+    const accessToken = generateAccessToken(user._id, user.role);
+    const refreshToken = generateRefreshToken(user._id);
+    user.refreshToken = refreshToken;
+    await user.save();
+
+    res.cookie('refreshToken', refreshToken, refreshCookieOptions);
+    res.redirect(`http://localhost:5173/oauth-success?accessToken=${accessToken}`);
+  } catch (error) {
+    res.status(500).json({ message: 'Google authentication failed', error: error.message });
+  }
+}

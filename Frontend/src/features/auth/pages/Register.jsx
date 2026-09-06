@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useSearchParams } from 'react-router-dom';
 import { User, Mail, Lock, Eye, EyeOff, AlertCircle, Loader2, Flame, Sparkles } from 'lucide-react';
 import { useAuth } from '../hooks/useAuth';
 
@@ -15,6 +15,12 @@ const Register = () => {
 
   const { handleRegister, loading, error, isAuthenticated, clearAuthError } = useAuth();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
+  const queryError = searchParams.get('error');
+
+  const handleGoogleLogin = () => {
+    window.location.href = '/api/auth/google';
+  };
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -128,10 +134,10 @@ const Register = () => {
           </div>
 
           {/* Error Alert Box */}
-          {(error || validationError) && (
+          {(error || validationError || queryError) && (
             <div className="mb-6 p-4 rounded-xl bg-[#ffdad6] border border-[#ba1a1a]/20 text-[#93000a] text-sm flex items-start gap-3 animate-fade-in shadow-sm">
               <AlertCircle className="w-5 h-5 text-[#ba1a1a] shrink-0 mt-0.5" />
-              <span className="font-medium leading-snug">{validationError || error}</span>
+              <span className="font-medium leading-snug">{validationError || error || queryError}</span>
             </div>
           )}
 
@@ -252,6 +258,7 @@ const Register = () => {
           {/* Google Sign In */}
           <button
             type="button"
+            onClick={handleGoogleLogin}
             className="w-full bg-white border-2 border-outline-variant/50 text-[#1e1b18] rounded-xl py-3.5 px-6 font-semibold text-sm hover:bg-[#fbf2ed] active:scale-[0.98] transition-all duration-200 flex justify-center items-center gap-3 cursor-pointer shadow-sm"
           >
             <svg className="w-5 h-5" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">

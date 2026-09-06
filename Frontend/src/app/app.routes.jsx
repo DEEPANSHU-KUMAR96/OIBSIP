@@ -2,6 +2,7 @@ import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Login from "../features/auth/pages/Login";
 import Register from "../features/auth/pages/Register";
+import OAuthSuccess from "../features/auth/pages/OAuthSuccess";
 import PizzaBuilder from "../features/order/pages/PizzaBuilder";
 import MyOrders from "../features/order/pages/MyOrders";
 import AdminOrders from "../features/order/pages/AdminOrders";
@@ -48,6 +49,10 @@ export const appRoutes = createBrowserRouter([
     {
         path: "/register",
         element: <Register />
+    },
+    {
+        path: "/oauth-success",
+        element: <OAuthSuccess />
     }
 ]);
 
