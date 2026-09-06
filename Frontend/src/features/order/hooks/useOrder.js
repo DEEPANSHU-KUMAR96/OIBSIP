@@ -164,7 +164,7 @@ export function useOrder() {
                     key: razorpayKeyId,
                     amount: paymentOrder.razorpayOrder.amount,
                     currency: paymentOrder.razorpayOrder.currency,
-                    name: 'PIZZADelivery',
+                    name: 'OIBSIP Pizza',
                     description: 'Pizza order payment',
                     order_id: paymentOrder.razorpayOrder.id,
                     handler: async function (response) {

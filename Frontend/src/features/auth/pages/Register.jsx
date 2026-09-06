@@ -81,7 +81,7 @@ const Register = () => {
               <Flame className="w-6 h-6 text-white" />
             </div>
             <span className="font-display font-bold text-xl tracking-wider text-white">
-              PIZZADelivery
+              OIBSIP Pizza
             </span>
           </div>
 
@@ -119,14 +119,14 @@ const Register = () => {
               <Flame className="w-7 h-7" />
             </div>
             <h1 className="font-display text-2xl font-bold text-[#9e0027] tracking-tight">
-              ARTISANAL HEARTH
+              OIBSIP Pizza
             </h1>
           </div>
 
           {/* Section Header */}
           <div className="text-center md:text-left mb-8">
             <h2 className="font-display text-3xl sm:text-4xl font-bold text-[#1e1b18] tracking-tight mb-2">
-              Join the Hearth
+              Join OIBSIP Pizza
             </h2>
             <p className="text-[#5b4040] text-sm sm:text-base">
               Create an account to start your gourmet pizza journey.

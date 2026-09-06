@@ -20,7 +20,7 @@ export default function Navbar() {
                         </div>
                         <div>
                             <span className="font-display font-bold text-xl tracking-tight text-[#9e0027]">
-                                Artisanal Hearth
+                                OIBSIP Pizza
                             </span>
                             <span className="hidden sm:block text-[10px] text-[#5b4040] uppercase tracking-widest font-semibold">
                                 Gourmet Pizza Builder
@@ -29,54 +29,54 @@ export default function Navbar() {
                     </Link>
 
                     {/* Navigation Links */}
-                    <nav className="flex items-center gap-2 sm:gap-4">
+                    <nav className="flex items-center gap-1 sm:gap-2 md:gap-4">
                         <Link
                             to="/"
-                            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
-                                isActive('/')
+                            title="Build Pizza"
+                            className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${isActive('/')
                                     ? 'bg-[#9e0027] text-white shadow-sm'
                                     : 'text-[#5b4040] hover:bg-[#e9e1dc]/60 hover:text-[#1e1b18]'
-                            }`}
+                                }`}
                         >
-                            <Pizza className="w-4 h-4" />
-                            <span>Build Pizza</span>
+                            <Pizza className="w-4 h-4 shrink-0" />
+                            <span className="hidden sm:inline">Build Pizza</span>
                         </Link>
 
                         <Link
                             to="/my-orders"
-                            className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
-                                isActive('/my-orders')
+                            title="My Orders"
+                            className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${isActive('/my-orders')
                                     ? 'bg-[#9e0027] text-white shadow-sm'
                                     : 'text-[#5b4040] hover:bg-[#e9e1dc]/60 hover:text-[#1e1b18]'
-                            }`}
+                                }`}
                         >
-                            <ShoppingBag className="w-4 h-4" />
-                            <span>My Orders</span>
+                            <ShoppingBag className="w-4 h-4 shrink-0" />
+                            <span className="hidden sm:inline">My Orders</span>
                         </Link>
 
                         {user?.role === 'admin' && (
                             <>
                                 <Link
                                     to="/admin/orders"
-                                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
-                                        isActive('/admin/orders')
+                                    title="Orders Queue"
+                                    className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${isActive('/admin/orders')
                                             ? 'bg-[#9e0027] text-white shadow-sm'
                                             : 'text-[#5b4040] hover:bg-[#e9e1dc]/60 hover:text-[#1e1b18]'
-                                    }`}
+                                        }`}
                                 >
-                                    <ShieldCheck className="w-4 h-4 text-amber-500" />
-                                    <span>Orders Queue</span>
+                                    <ShieldCheck className="w-4 h-4 text-amber-500 shrink-0" />
+                                    <span className="hidden sm:inline">Orders</span>
                                 </Link>
                                 <Link
                                     to="/admin/inventory"
-                                    className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-sm font-medium transition-all ${
-                                        isActive('/admin/inventory')
+                                    title="Pantry Inventory"
+                                    className={`flex items-center gap-1.5 px-2.5 sm:px-3.5 py-2 rounded-xl text-xs sm:text-sm font-medium transition-all ${isActive('/admin/inventory')
                                             ? 'bg-[#9e0027] text-white shadow-sm'
                                             : 'text-[#5b4040] hover:bg-[#e9e1dc]/60 hover:text-[#1e1b18]'
-                                    }`}
+                                        }`}
                                 >
-                                    <Boxes className="w-4 h-4 text-amber-500" />
-                                    <span>Pantry Inventory</span>
+                                    <Boxes className="w-4 h-4 text-amber-500 shrink-0" />
+                                    <span className="hidden sm:inline">Pantry</span>
                                 </Link>
                             </>
                         )}

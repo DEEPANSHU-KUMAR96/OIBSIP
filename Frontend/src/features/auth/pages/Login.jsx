@@ -69,17 +69,17 @@ const Login = () => {
               <Flame className="w-6 h-6 text-white" />
             </div>
             <span className="font-display font-bold text-xl tracking-wider text-white">
-              PIZZADelivery
+              OIBSIP Pizza
             </span>
           </div>
 
           {/* Hero Bottom Text */}
           <div className="space-y-4 max-w-lg">
             <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider text-amber-200 uppercase">
-              <Sparkles className="w-3.5 h-3.5" /> PIZZADelivery
+              <Sparkles className="w-3.5 h-3.5" /> OIBSIP Pizza
             </div>
             <h1 className="font-display text-4xl lg:text-5xl font-bold leading-tight drop-shadow-md">
-              Welcome Back to the Hearth
+              Welcome Back to OIBSIP Pizza
             </h1>
             <p className="text-stone-300 text-base leading-relaxed font-light">
               Sign in to manage your orders, access exclusive seasonal menus, and savor traditional wood-fired perfection.
@@ -107,7 +107,7 @@ const Login = () => {
               <Flame className="w-7 h-7" />
             </div>
             <h1 className="font-display text-2xl font-bold text-[#9e0027] tracking-tight">
-              ARTISANAL HEARTH
+              OIBSIP Pizza
             </h1>
           </div>
 

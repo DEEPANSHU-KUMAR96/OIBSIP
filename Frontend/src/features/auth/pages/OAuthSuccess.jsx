@@ -45,7 +45,7 @@ export default function OAuthSuccess() {
                     Completing Sign In...
                 </h2>
                 <p className="text-xs text-[#5b4040] mb-6">
-                    Connecting your Google account with Artisanal Hearth.
+                    Connecting your Google account with OIBSIP Pizza.
                 </p>
                 <div className="flex items-center gap-2 text-sm font-medium text-[#9e0027]">
                     <Loader2 className="w-5 h-5 animate-spin" />
