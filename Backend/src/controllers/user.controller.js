@@ -207,7 +207,7 @@ export const googleCallback = async (req, res) => {
     await user.save();
 
     res.cookie('refreshToken', refreshToken, refreshCookieOptions);
-    res.redirect(`http://localhost:5173/oauth-success?accessToken=${accessToken}`);
+    res.redirect(`https://oibsip-skh1.onrender.com/oauth-success?accessToken=${accessToken}`);
   } catch (error) {
     res.status(500).json({ message: 'Google authentication failed', error: error.message });
   }

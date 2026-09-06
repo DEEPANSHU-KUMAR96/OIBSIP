@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path';
 import cors from 'cors';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
@@ -16,7 +17,7 @@ app.use(express.static("./public")) // for deployment
 
 app.use(express.json());
 app.use(cors({
-    origin: 'http://localhost:5173',
+    origin: ['https://oibsip-skh1.onrender.com', 'http://localhost:5173'],
     credentials: true
 }));
 app.use(cookieParser());
@@ -26,7 +27,7 @@ app.use(passport.initialize());
 passport.use(new GoogleStrategy({
     clientID: config.GOOGLE_CLIENT_ID,
     clientSecret: config.GOOGLE_CLIENT_SECRET,
-    callbackURL: 'http://localhost:3000/api/auth/google/callback',
+    callbackURL: 'https://oibsip-skh1.onrender.com/api/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
     return done(null, profile);
 }));
@@ -35,5 +36,7 @@ passport.use(new GoogleStrategy({
 app.use('/api/auth', userRoutes);
 app.use('/api/inventory', inventoryRoutes);
 app.use('/api/orders', orderRoutes);
+
+app.get('/{*splat}', (req, res) => { res.sendFile(path.resolve('./public', 'index.html')); });
 
 export default app;
