@@ -25,6 +25,9 @@ if(!process.env.GOOGLE_CLIENT_ID){
 if(!process.env.GOOGLE_CLIENT_SECRET){
     throw new Error('GOOGLE_CLIENT_SECRET must be defined');
 }
+if(!process.env.GOOGLE_CALLBACK_URL){
+    throw new Error('GOOGLE_CALLBACK_URL must be defined');
+}
 
 export const config = {
     NODE_ENV: process.env.NODE_ENV || 'development',
@@ -34,5 +37,6 @@ export const config = {
     RAZORPAY_KEY_ID: process.env.RAZORPAY_KEY_ID,
     RAZORPAY_KEY_SECRET: process.env.RAZORPAY_KEY_SECRET,
     GOOGLE_CLIENT_ID: process.env.GOOGLE_CLIENT_ID,
-    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET
+    GOOGLE_CLIENT_SECRET: process.env.GOOGLE_CLIENT_SECRET,
+    GOOGLE_CALLBACK_URL:process.env.GOOGLE_CALLBACK_URL
 };
