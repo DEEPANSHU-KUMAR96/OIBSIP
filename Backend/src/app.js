@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
 import cookieParser from 'cookie-parser';
-import {config} from './config/config.js';
+import { config } from './config/config.js';
 import passport from 'passport';
 import { Strategy as GoogleStrategy } from 'passport-google-oauth20';
 
@@ -11,6 +11,8 @@ import inventoryRoutes from './routes/inventory.routes.js';
 import orderRoutes from './routes/order.routes.js';
 
 const app = express();
+
+app.use(express.static("./public")) // for deployment
 
 app.use(express.json());
 app.use(cors({
@@ -22,11 +24,11 @@ app.use(morgan('dev'));
 app.use(passport.initialize());
 
 passport.use(new GoogleStrategy({
-  clientID: config.GOOGLE_CLIENT_ID,
-  clientSecret: config.GOOGLE_CLIENT_SECRET,
-  callbackURL: 'http://localhost:3000/api/auth/google/callback',
+    clientID: config.GOOGLE_CLIENT_ID,
+    clientSecret: config.GOOGLE_CLIENT_SECRET,
+    callbackURL: 'http://localhost:3000/api/auth/google/callback',
 }, (accessToken, refreshToken, profile, done) => {
-  return done(null, profile);
+    return done(null, profile);
 }));
 
 
