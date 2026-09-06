@@ -13,7 +13,7 @@ An artisanal, full-stack pizza ordering and inventory management web application
 
 ## 🌐 Live Deployment & Demo Credentials
 
-- **Live URL**: [https://oibsip-skh1.onrender.com](https://oibsip-skh1.onrender.com)
+- **Live URL**: https://oibsip-skh1.onrender.com
 
 ### 🔑 Demo Admin Credentials
 | Role | Email | Password | Access |
