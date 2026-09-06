@@ -15,7 +15,8 @@ import {
     X,
     TrendingDown,
     IndianRupee,
-    Layers
+    Layers,
+    ChevronDown
 } from 'lucide-react';
 
 export default function InventoryManagement() {
@@ -161,33 +162,33 @@ export default function InventoryManagement() {
         <div className="min-h-screen bg-[#fff8f5] text-[#1e1b18] flex flex-col font-body">
             <Navbar />
 
-            <main className="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8">
+            <main className="flex-1 max-w-7xl w-full mx-auto px-3 sm:px-6 lg:px-8 py-4 sm:py-8">
                 {/* Header Title */}
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4 border-b border-[#e3bebd]/40 pb-6 mb-8">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 border-b border-[#e3bebd]/40 pb-4 sm:pb-6 mb-5 sm:mb-8">
                     <div>
-                        <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-semibold uppercase tracking-wider mb-2">
-                            <Boxes className="w-3.5 h-3.5 text-amber-600" /> Stock Control
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 sm:px-3 sm:py-1 rounded-full bg-amber-100 text-amber-900 text-[10px] sm:text-xs font-semibold uppercase tracking-wider mb-1.5 sm:mb-2">
+                            <Boxes className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-amber-600" /> Stock Control
                         </span>
-                        <h1 className="font-display text-3xl font-bold text-[#1e1b18]">
-                            Pantry & Inventory Management
+                        <h1 className="font-display text-2xl sm:text-3xl font-bold text-[#1e1b18]">
+                            Pantry & Inventory
                         </h1>
-                        <p className="text-xs text-[#5b4040] mt-1">
+                        <p className="text-[11px] sm:text-xs text-[#5b4040] mt-0.5 sm:mt-1">
                             Monitor stock levels in real time, configure replenishment alerts, and manage ingredient catalogue.
                         </p>
                     </div>
 
-                    <div className="flex items-center gap-3 w-full sm:w-auto">
+                    <div className="flex items-center gap-2 sm:gap-3 w-full sm:w-auto">
                         <button
                             onClick={loadAdminInventory}
                             disabled={loading}
-                            className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-medium text-[#5b4040] bg-[#e9e1dc]/60 hover:bg-[#e9e1dc] rounded-xl transition-all disabled:opacity-50"
+                            className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-medium text-[#5b4040] bg-[#e9e1dc]/60 hover:bg-[#e9e1dc] rounded-xl transition-all disabled:opacity-50 cursor-pointer"
                         >
                             <RefreshCw className={`w-3.5 h-3.5 ${loading ? 'animate-spin' : ''}`} />
                             Sync
                         </button>
                         <button
                             onClick={() => setIsAddModalOpen(true)}
-                            className="flex-1 sm:flex-initial flex items-center justify-center gap-2 px-4 py-2.5 text-xs font-bold text-white bg-[#9e0027] hover:bg-[#c41e3a] rounded-xl shadow-xs transition-all"
+                            className="flex-1 sm:flex-initial flex items-center justify-center gap-1.5 px-3 sm:px-4 py-2 sm:py-2.5 text-xs font-bold text-white bg-[#9e0027] hover:bg-[#c41e3a] rounded-xl shadow-xs transition-all cursor-pointer"
                         >
                             <Plus className="w-4 h-4" />
                             Add Ingredient
@@ -197,78 +198,78 @@ export default function InventoryManagement() {
 
                 {/* Notifications */}
                 {error && (
-                    <div className="mb-6 p-4 rounded-2xl bg-[#ffdad6] text-[#93000a] text-xs font-semibold flex justify-between items-center animate-fade-in">
+                    <div className="mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-[#ffdad6] text-[#93000a] text-xs font-semibold flex justify-between items-center animate-fade-in">
                         <div className="flex items-center gap-2">
-                            <AlertCircle className="w-4 h-4" />
+                            <AlertCircle className="w-4 h-4 shrink-0" />
                             <span>{error}</span>
                         </div>
-                        <button onClick={clearInventoryError} className="underline font-bold">Dismiss</button>
+                        <button onClick={clearInventoryError} className="underline font-bold cursor-pointer">Dismiss</button>
                     </div>
                 )}
 
                 {success && (
-                    <div className="mb-6 p-4 rounded-2xl bg-emerald-50 text-emerald-900 text-xs font-semibold flex justify-between items-center border border-emerald-200 animate-fade-in">
+                    <div className="mb-4 sm:mb-6 p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-emerald-50 text-emerald-900 text-xs font-semibold flex justify-between items-center border border-emerald-200 animate-fade-in">
                         <div className="flex items-center gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
                             <span>{success}</span>
                         </div>
-                        <button onClick={clearInventorySuccess} className="underline font-bold">Dismiss</button>
+                        <button onClick={clearInventorySuccess} className="underline font-bold cursor-pointer">Dismiss</button>
                     </div>
                 )}
 
                 {/* Metric Summary Cards */}
-                <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-                    <div className="bg-white p-5 rounded-3xl border border-[#e3bebd]/60 shadow-xs">
+                <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4 mb-5 sm:mb-8">
+                    <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-[#e3bebd]/60 shadow-xs flex flex-col justify-between">
                         <div className="flex items-center justify-between text-[#5b4040]">
-                            <span className="text-xs font-semibold uppercase tracking-wider">Total Items</span>
-                            <Layers className="w-4 h-4 text-[#9e0027]" />
+                            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider">Total Items</span>
+                            <Layers className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#9e0027]" />
                         </div>
-                        <div className="mt-2 text-2xl font-bold font-display text-[#1e1b18]">
+                        <div className="my-1.5 sm:my-2 text-xl sm:text-2xl font-bold font-display text-[#1e1b18]">
                             {stats.totalItems}
                         </div>
-                        <span className="text-[11px] text-[#5b4040]">Active in pizza builder</span>
+                        <span className="text-[10px] sm:text-[11px] text-[#5b4040] truncate">Active in builder</span>
                     </div>
 
-                    <div className="bg-white p-5 rounded-3xl border border-[#e3bebd]/60 shadow-xs">
+                    <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-[#e3bebd]/60 shadow-xs flex flex-col justify-between">
                         <div className="flex items-center justify-between text-amber-800">
-                            <span className="text-xs font-semibold uppercase tracking-wider">Low Stock Alerts</span>
-                            <TrendingDown className="w-4 h-4 text-amber-600" />
+                            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider">Low Stock</span>
+                            <TrendingDown className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-amber-600" />
                         </div>
-                        <div className="mt-2 text-2xl font-bold font-display text-amber-700">
+                        <div className="my-1.5 sm:my-2 text-xl sm:text-2xl font-bold font-display text-amber-700">
                             {stats.lowStockCount}
                         </div>
-                        <span className="text-[11px] text-[#5b4040]">Below threshold limits</span>
+                        <span className="text-[10px] sm:text-[11px] text-[#5b4040] truncate">Below threshold</span>
                     </div>
 
-                    <div className="bg-white p-5 rounded-3xl border border-[#e3bebd]/60 shadow-xs">
+                    <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-[#e3bebd]/60 shadow-xs flex flex-col justify-between">
                         <div className="flex items-center justify-between text-red-800">
-                            <span className="text-xs font-semibold uppercase tracking-wider">Out of Stock</span>
-                            <AlertTriangle className="w-4 h-4 text-red-600" />
+                            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider">Out of Stock</span>
+                            <AlertTriangle className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-red-600" />
                         </div>
-                        <div className="mt-2 text-2xl font-bold font-display text-red-600">
+                        <div className="my-1.5 sm:my-2 text-xl sm:text-2xl font-bold font-display text-red-600">
                             {stats.outOfStockCount}
                         </div>
-                        <span className="text-[11px] text-[#5b4040]">Requires immediate restock</span>
+                        <span className="text-[10px] sm:text-[11px] text-[#5b4040] truncate">Needs restock</span>
                     </div>
 
-                    <div className="bg-white p-5 rounded-3xl border border-[#e3bebd]/60 shadow-xs">
+                    <div className="bg-white p-3.5 sm:p-5 rounded-2xl sm:rounded-3xl border border-[#e3bebd]/60 shadow-xs flex flex-col justify-between">
                         <div className="flex items-center justify-between text-emerald-800">
-                            <span className="text-xs font-semibold uppercase tracking-wider">Stock Valuation</span>
-                            <IndianRupee className="w-4 h-4 text-emerald-600" />
+                            <span className="text-[10px] sm:text-xs font-semibold uppercase tracking-wider">Net Worth</span>
+                            <IndianRupee className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-emerald-600" />
                         </div>
-                        <div className="mt-2 text-2xl font-bold font-display text-emerald-700">
+                        <div className="my-1.5 sm:my-2 text-xl sm:text-2xl font-bold font-display text-emerald-700 truncate">
                             ₹{stats.totalValuation}
                         </div>
-                        <span className="text-[11px] text-[#5b4040]">Inventory market worth</span>
+                        <span className="text-[10px] sm:text-[11px] text-[#5b4040] truncate">Inventory value</span>
                     </div>
                 </div>
 
                 {/* Filters and Controls */}
-                <div className="bg-white p-4 rounded-3xl border border-[#e3bebd]/60 shadow-xs mb-6 space-y-3">
-                    <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+                <div className="bg-white p-3 sm:p-4 rounded-2xl sm:rounded-3xl border border-[#e3bebd]/60 shadow-xs mb-5 sm:mb-6 space-y-3">
+                    <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-stretch md:items-center justify-between">
                         {/* Category filter pills */}
-                        <div className="flex items-center gap-1.5 overflow-x-auto w-full md:w-auto">
-                            <Filter className="w-4 h-4 text-[#5b4040] mr-1 hidden sm:block shrink-0" />
+                        <div className="flex items-center gap-1.5 overflow-x-auto pb-1 md:pb-0 w-full md:w-auto">
+                            <Filter className="w-3.5 h-3.5 text-[#5b4040] mr-1 hidden sm:block shrink-0" />
                             {[
                                 { id: 'ALL', label: 'All' },
                                 { id: 'base', label: 'Crust Bases' },
@@ -279,7 +280,7 @@ export default function InventoryManagement() {
                                 <button
                                     key={tab.id}
                                     onClick={() => setCategoryFilter(tab.id)}
-                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all whitespace-nowrap ${categoryFilter === tab.id
+                                    className={`px-3 py-1.5 rounded-xl text-xs font-semibold transition-all shrink-0 whitespace-nowrap cursor-pointer ${categoryFilter === tab.id
                                             ? 'bg-[#9e0027] text-white shadow-xs'
                                             : 'text-[#5b4040] hover:bg-[#e9e1dc]/60 hover:text-[#1e1b18]'
                                         }`}
@@ -290,17 +291,20 @@ export default function InventoryManagement() {
                         </div>
 
                         {/* Search and stock status filter */}
-                        <div className="flex items-center gap-3 w-full md:w-auto">
-                            <select
-                                value={stockFilter}
-                                onChange={(e) => setStockFilter(e.target.value)}
-                                className="px-3 py-2 text-xs bg-[#fff8f5] border border-[#e3bebd]/60 rounded-xl text-[#1e1b18] focus:outline-none focus:border-[#9e0027]"
-                            >
-                                <option value="ALL">All Stock Levels</option>
-                                <option value="IN_STOCK">In Stock (Healthy)</option>
-                                <option value="LOW_STOCK">Low Stock (Alert)</option>
-                                <option value="OUT_OF_STOCK">Out of Stock</option>
-                            </select>
+                        <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-3 w-full md:w-auto">
+                            <div className="relative w-full sm:w-auto">
+                                <select
+                                    value={stockFilter}
+                                    onChange={(e) => setStockFilter(e.target.value)}
+                                    className="w-full sm:w-auto appearance-none pl-3.5 pr-8 py-2 text-xs font-medium bg-[#fff8f5] border border-[#e3bebd]/60 rounded-xl text-[#1e1b18] hover:border-[#9e0027] focus:outline-none focus:ring-2 focus:ring-[#9e0027] transition-all cursor-pointer"
+                                >
+                                    <option value="ALL">All Stock Levels</option>
+                                    <option value="IN_STOCK">In Stock (Healthy)</option>
+                                    <option value="LOW_STOCK">Low Stock (Alert)</option>
+                                    <option value="OUT_OF_STOCK">Out of Stock</option>
+                                </select>
+                                <ChevronDown className="w-3.5 h-3.5 text-[#5b4040] absolute right-2.5 top-1/2 -translate-y-1/2 pointer-events-none" />
+                            </div>
 
                             <div className="relative flex-1 sm:w-64">
                                 <Search className="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-[#5b4040]" />
@@ -316,164 +320,298 @@ export default function InventoryManagement() {
                     </div>
                 </div>
 
-                {/* Inventory Table */}
+                {/* Inventory List Content */}
                 {loading && !items.length ? (
                     <div className="py-20 text-center flex flex-col items-center justify-center gap-3">
                         <div className="w-10 h-10 rounded-full border-4 border-[#9e0027] border-t-transparent animate-spin" />
                         <p className="text-xs text-[#5b4040]">Loading pantry inventory...</p>
                     </div>
                 ) : filteredItems.length === 0 ? (
-                    <div className="bg-white rounded-3xl p-12 text-center border border-[#e3bebd]/60 max-w-md mx-auto my-8">
+                    <div className="bg-white rounded-3xl p-8 sm:p-12 text-center border border-[#e3bebd]/60 max-w-md mx-auto my-6 sm:my-8">
                         <p className="text-sm font-semibold text-[#1e1b18]">No ingredients found</p>
                         <p className="text-xs text-[#5b4040] mt-1">Try changing filters or add a new item.</p>
                     </div>
                 ) : (
-                    <div className="bg-white rounded-3xl border border-[#e3bebd]/60 shadow-xs overflow-hidden">
-                        <div className="overflow-x-auto">
-                            <table className="w-full text-left text-xs">
-                                <thead>
-                                    <tr className="bg-[#fff8f5] border-b border-[#e3bebd]/50 text-[#5b4040] font-semibold uppercase tracking-wider">
-                                        <th className="py-3.5 px-5">Ingredient</th>
-                                        <th className="py-3.5 px-4">Category</th>
-                                        <th className="py-3.5 px-4">Price</th>
-                                        <th className="py-3.5 px-4">Stock & Restock</th>
-                                        <th className="py-3.5 px-4">Threshold</th>
-                                        <th className="py-3.5 px-4">Status</th>
-                                        <th className="py-3.5 px-5 text-right">Actions</th>
-                                    </tr>
-                                </thead>
-                                <tbody className="divide-y divide-[#e3bebd]/30">
-                                    {filteredItems.map((item) => {
-                                        const currentVal =
-                                            editingStocks[item._id] !== undefined
-                                                ? editingStocks[item._id]
-                                                : item.stock;
-                                        const isModified =
-                                            editingStocks[item._id] !== undefined &&
-                                            editingStocks[item._id] !== item.stock;
+                    <>
+                        {/* MOBILE CARDS VIEW (block md:hidden) */}
+                        <div className="block md:hidden space-y-3">
+                            {filteredItems.map((item) => {
+                                const currentVal =
+                                    editingStocks[item._id] !== undefined
+                                        ? editingStocks[item._id]
+                                        : item.stock;
+                                const isModified =
+                                    editingStocks[item._id] !== undefined &&
+                                    editingStocks[item._id] !== item.stock;
 
-                                        const isLow = item.stock > 0 && item.stock <= (item.lowStockThreshold || 20);
-                                        const isOut = item.stock === 0;
+                                const isLow = item.stock > 0 && item.stock <= (item.lowStockThreshold || 20);
+                                const isOut = item.stock === 0;
 
-                                        return (
-                                            <tr key={item._id} className="hover:bg-[#fff8f5]/60 transition-colors">
-                                                {/* Ingredient name */}
-                                                <td className="py-4 px-5">
-                                                    <span className="font-bold text-sm text-[#1e1b18] block">
+                                return (
+                                    <div
+                                        key={item._id}
+                                        className="bg-white p-3.5 rounded-2xl border border-[#e3bebd]/60 shadow-xs space-y-3"
+                                    >
+                                        {/* Card Top: Name, Category, Status & Action */}
+                                        <div className="flex items-start justify-between gap-2">
+                                            <div className="min-w-0 flex-1">
+                                                <div className="flex items-center gap-2 flex-wrap">
+                                                    <h3 className="font-bold text-sm text-[#1e1b18]">
                                                         {item.name}
-                                                    </span>
-                                                    <span className="text-[10px] font-mono text-[#5b4040]">
-                                                        ID: {item._id.slice(-6).toUpperCase()}
-                                                    </span>
-                                                </td>
-
-                                                {/* Category */}
-                                                <td className="py-4 px-4">
+                                                    </h3>
                                                     <span
-                                                        className={`inline-block px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider border ${getCategoryBadgeClass(
+                                                        className={`inline-block px-2 py-0.5 rounded-md text-[9px] font-bold uppercase tracking-wider border ${getCategoryBadgeClass(
                                                             item.category
                                                         )}`}
                                                     >
                                                         {item.category}
                                                     </span>
-                                                </td>
+                                                </div>
+                                                <span className="text-[10px] font-mono text-[#5b4040]">
+                                                    ID: #{item._id.slice(-6).toUpperCase()} • Alert &le; {item.lowStockThreshold || 20}
+                                                </span>
+                                            </div>
 
-                                                {/* Price */}
-                                                <td className="py-4 px-4 font-display font-bold text-sm text-[#9e0027]">
+                                            <div className="flex items-center gap-1.5 shrink-0">
+                                                {isOut ? (
+                                                    <span className="inline-flex items-center text-[9px] font-bold uppercase text-red-700 bg-red-100 px-2 py-0.5 rounded-md">
+                                                        Out of Stock
+                                                    </span>
+                                                ) : isLow ? (
+                                                    <span className="inline-flex items-center text-[9px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
+                                                        Low Stock
+                                                    </span>
+                                                ) : (
+                                                    <span className="inline-flex items-center text-[9px] font-bold uppercase text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
+                                                        Healthy
+                                                    </span>
+                                                )}
+                                                <button
+                                                    onClick={() => {
+                                                        if (
+                                                            window.confirm(
+                                                                `Are you sure you want to deactivate "${item.name}"?`
+                                                            )
+                                                        ) {
+                                                            handleDeleteItem(item._id, item.name);
+                                                        }
+                                                    }}
+                                                    className="p-1.5 rounded-lg text-[#5b4040] hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                                                    title="Deactivate Item"
+                                                >
+                                                    <Trash2 className="w-3.5 h-3.5" />
+                                                </button>
+                                            </div>
+                                        </div>
+
+                                        {/* Card Bottom: Price and Stock Stepper */}
+                                        <div className="flex items-center justify-between gap-2 pt-2 border-t border-[#e3bebd]/30">
+                                            <div>
+                                                <span className="text-[9px] text-[#5b4040] uppercase font-semibold block leading-none mb-1">
+                                                    Unit Price
+                                                </span>
+                                                <span className="font-display font-bold text-base text-[#9e0027] leading-none">
                                                     ₹{item.price}
-                                                </td>
+                                                </span>
+                                            </div>
 
-                                                {/* Stock Editor */}
-                                                <td className="py-4 px-4">
-                                                    <div className="flex items-center gap-1.5">
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => handleStockStep(item._id, item.stock, -5)}
-                                                            className="w-6 h-6 rounded-lg bg-[#e9e1dc]/80 hover:bg-[#e9e1dc] text-[#5b4040] font-bold flex items-center justify-center text-xs"
-                                                            title="Subtract 5"
-                                                        >
-                                                            -
-                                                        </button>
-                                                        <input
-                                                            type="number"
-                                                            min="0"
-                                                            value={currentVal}
-                                                            onChange={(e) =>
-                                                                handleStockInputChange(item._id, e.target.value)
-                                                            }
-                                                            className={`w-16 text-center py-1 px-1.5 rounded-lg border text-xs font-bold ${isModified
-                                                                    ? 'border-[#9e0027] bg-[#ffdad6]/20'
-                                                                    : 'border-[#e3bebd]/60 bg-[#fff8f5]'
-                                                                }`}
-                                                        />
-                                                        <button
-                                                            type="button"
-                                                            onClick={() => handleStockStep(item._id, item.stock, 5)}
-                                                            className="w-6 h-6 rounded-lg bg-[#e9e1dc]/80 hover:bg-[#e9e1dc] text-[#5b4040] font-bold flex items-center justify-center text-xs"
-                                                            title="Add 5"
-                                                        >
-                                                            +
-                                                        </button>
+                                            {/* Stock Stepper */}
+                                            <div className="flex items-center gap-1 bg-[#fff8f5] p-1 rounded-xl border border-[#e3bebd]/50">
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleStockStep(item._id, item.stock, -5)}
+                                                    className="w-7 h-7 rounded-lg bg-white border border-[#e3bebd]/60 hover:bg-[#e9e1dc] text-[#5b4040] font-bold flex items-center justify-center text-sm shadow-2xs active:scale-95 transition-all cursor-pointer"
+                                                    title="Subtract 5"
+                                                >
+                                                    -
+                                                </button>
+                                                <input
+                                                    type="number"
+                                                    min="0"
+                                                    value={currentVal}
+                                                    onChange={(e) =>
+                                                        handleStockInputChange(item._id, e.target.value)
+                                                    }
+                                                    className={`w-12 text-center py-1 px-0.5 rounded-lg border text-xs font-bold ${
+                                                        isModified
+                                                            ? 'border-[#9e0027] bg-[#ffdad6]/40 text-[#9e0027]'
+                                                            : 'border-transparent bg-transparent text-[#1e1b18]'
+                                                    }`}
+                                                />
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleStockStep(item._id, item.stock, 5)}
+                                                    className="w-7 h-7 rounded-lg bg-white border border-[#e3bebd]/60 hover:bg-[#e9e1dc] text-[#5b4040] font-bold flex items-center justify-center text-sm shadow-2xs active:scale-95 transition-all cursor-pointer"
+                                                    title="Add 5"
+                                                >
+                                                    +
+                                                </button>
 
-                                                        {isModified && (
-                                                            <button
-                                                                onClick={() => handleSaveStock(item._id)}
-                                                                className="ml-1 p-1.5 rounded-lg bg-[#9e0027] text-white hover:bg-[#c41e3a] shadow-xs"
-                                                                title="Save Stock"
-                                                            >
-                                                                <Save className="w-3.5 h-3.5" />
-                                                            </button>
-                                                        )}
-                                                    </div>
-                                                </td>
-
-                                                {/* Alert Threshold */}
-                                                <td className="py-4 px-4 text-[#5b4040] font-mono text-xs">
-                                                    &le; {item.lowStockThreshold || 20}
-                                                </td>
-
-                                                {/* Status indicator */}
-                                                <td className="py-4 px-4">
-                                                    {isOut ? (
-                                                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase text-red-700 bg-red-100 px-2 py-0.5 rounded-md">
-                                                            Out of Stock
-                                                        </span>
-                                                    ) : isLow ? (
-                                                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
-                                                            Low Stock
-                                                        </span>
-                                                    ) : (
-                                                        <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
-                                                            Healthy
-                                                        </span>
-                                                    )}
-                                                </td>
-
-                                                {/* Actions */}
-                                                <td className="py-4 px-5 text-right">
+                                                {isModified && (
                                                     <button
-                                                        onClick={() => {
-                                                            if (
-                                                                window.confirm(
-                                                                    `Are you sure you want to deactivate "${item.name}"?`
-                                                                )
-                                                            ) {
-                                                                handleDeleteItem(item._id, item.name);
-                                                            }
-                                                        }}
-                                                        className="p-2 rounded-xl text-[#5b4040] hover:text-red-600 hover:bg-red-50 transition-colors"
-                                                        title="Deactivate Item"
+                                                        onClick={() => handleSaveStock(item._id)}
+                                                        className="ml-1 px-2.5 py-1.5 rounded-lg bg-[#9e0027] text-white hover:bg-[#c41e3a] text-xs font-bold flex items-center gap-1 shadow-xs cursor-pointer"
+                                                        title="Save Stock"
                                                     >
-                                                        <Trash2 className="w-4 h-4" />
+                                                        <Save className="w-3 h-3" />
+                                                        <span>Save</span>
                                                     </button>
-                                                </td>
-                                            </tr>
-                                        );
-                                    })}
-                                </tbody>
-                            </table>
+                                                )}
+                                            </div>
+                                        </div>
+                                    </div>
+                                );
+                            })}
                         </div>
-                    </div>
+
+                        {/* DESKTOP TABLE VIEW (hidden md:block) */}
+                        <div className="hidden md:block bg-white rounded-3xl border border-[#e3bebd]/60 shadow-xs overflow-hidden">
+                            <div className="overflow-x-auto">
+                                <table className="w-full text-left text-xs min-w-[680px]">
+                                    <thead>
+                                        <tr className="bg-[#fff8f5] border-b border-[#e3bebd]/50 text-[#5b4040] font-semibold uppercase tracking-wider">
+                                            <th className="py-3.5 px-5">Ingredient</th>
+                                            <th className="py-3.5 px-4">Category</th>
+                                            <th className="py-3.5 px-4">Price</th>
+                                            <th className="py-3.5 px-4">Stock & Restock</th>
+                                            <th className="py-3.5 px-4">Threshold</th>
+                                            <th className="py-3.5 px-4">Status</th>
+                                            <th className="py-3.5 px-5 text-right">Actions</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody className="divide-y divide-[#e3bebd]/30">
+                                        {filteredItems.map((item) => {
+                                            const currentVal =
+                                                editingStocks[item._id] !== undefined
+                                                    ? editingStocks[item._id]
+                                                    : item.stock;
+                                            const isModified =
+                                                editingStocks[item._id] !== undefined &&
+                                                editingStocks[item._id] !== item.stock;
+
+                                            const isLow = item.stock > 0 && item.stock <= (item.lowStockThreshold || 20);
+                                            const isOut = item.stock === 0;
+
+                                            return (
+                                                <tr key={item._id} className="hover:bg-[#fff8f5]/60 transition-colors">
+                                                    {/* Ingredient name */}
+                                                    <td className="py-4 px-5">
+                                                        <span className="font-bold text-sm text-[#1e1b18] block">
+                                                            {item.name}
+                                                        </span>
+                                                        <span className="text-[10px] font-mono text-[#5b4040]">
+                                                            ID: {item._id.slice(-6).toUpperCase()}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Category */}
+                                                    <td className="py-4 px-4">
+                                                        <span
+                                                            className={`inline-block px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider border ${getCategoryBadgeClass(
+                                                                item.category
+                                                            )}`}
+                                                        >
+                                                            {item.category}
+                                                        </span>
+                                                    </td>
+
+                                                    {/* Price */}
+                                                    <td className="py-4 px-4 font-display font-bold text-sm text-[#9e0027]">
+                                                        ₹{item.price}
+                                                    </td>
+
+                                                    {/* Stock Editor */}
+                                                    <td className="py-4 px-4">
+                                                        <div className="flex items-center gap-1.5">
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleStockStep(item._id, item.stock, -5)}
+                                                                className="w-6 h-6 rounded-lg bg-[#e9e1dc]/80 hover:bg-[#e9e1dc] text-[#5b4040] font-bold flex items-center justify-center text-xs cursor-pointer"
+                                                                title="Subtract 5"
+                                                            >
+                                                                -
+                                                            </button>
+                                                            <input
+                                                                type="number"
+                                                                min="0"
+                                                                value={currentVal}
+                                                                onChange={(e) =>
+                                                                    handleStockInputChange(item._id, e.target.value)
+                                                                }
+                                                                className={`w-16 text-center py-1 px-1.5 rounded-lg border text-xs font-bold ${isModified
+                                                                        ? 'border-[#9e0027] bg-[#ffdad6]/20'
+                                                                        : 'border-[#e3bebd]/60 bg-[#fff8f5]'
+                                                                    }`}
+                                                            />
+                                                            <button
+                                                                type="button"
+                                                                onClick={() => handleStockStep(item._id, item.stock, 5)}
+                                                                className="w-6 h-6 rounded-lg bg-[#e9e1dc]/80 hover:bg-[#e9e1dc] text-[#5b4040] font-bold flex items-center justify-center text-xs cursor-pointer"
+                                                                title="Add 5"
+                                                            >
+                                                                +
+                                                            </button>
+
+                                                            {isModified && (
+                                                                <button
+                                                                    onClick={() => handleSaveStock(item._id)}
+                                                                    className="ml-1 p-1.5 rounded-lg bg-[#9e0027] text-white hover:bg-[#c41e3a] shadow-xs cursor-pointer"
+                                                                    title="Save Stock"
+                                                                >
+                                                                    <Save className="w-3.5 h-3.5" />
+                                                                </button>
+                                                            )}
+                                                        </div>
+                                                    </td>
+
+                                                    {/* Alert Threshold */}
+                                                    <td className="py-4 px-4 text-[#5b4040] font-mono text-xs">
+                                                        &le; {item.lowStockThreshold || 20}
+                                                    </td>
+
+                                                    {/* Status indicator */}
+                                                    <td className="py-4 px-4">
+                                                        {isOut ? (
+                                                            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase text-red-700 bg-red-100 px-2 py-0.5 rounded-md">
+                                                                Out of Stock
+                                                            </span>
+                                                        ) : isLow ? (
+                                                            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase text-amber-800 bg-amber-100 px-2 py-0.5 rounded-md">
+                                                                Low Stock
+                                                            </span>
+                                                        ) : (
+                                                            <span className="inline-flex items-center gap-1 text-[10px] font-bold uppercase text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded-md">
+                                                                Healthy
+                                                            </span>
+                                                        )}
+                                                    </td>
+
+                                                    {/* Actions */}
+                                                    <td className="py-4 px-5 text-right">
+                                                        <button
+                                                            onClick={() => {
+                                                                if (
+                                                                    window.confirm(
+                                                                        `Are you sure you want to deactivate "${item.name}"?`
+                                                                    )
+                                                                ) {
+                                                                    handleDeleteItem(item._id, item.name);
+                                                                }
+                                                            }}
+                                                            className="p-2 rounded-xl text-[#5b4040] hover:text-red-600 hover:bg-red-50 transition-colors cursor-pointer"
+                                                            title="Deactivate Item"
+                                                        >
+                                                            <Trash2 className="w-4 h-4" />
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            );
+                                        })}
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </>
                 )}
 
                 {/* ADD INGREDIENT MODAL */}
@@ -518,18 +656,21 @@ export default function InventoryManagement() {
                                     <label className="block text-xs font-semibold text-[#5b4040] mb-1">
                                         Category *
                                     </label>
-                                    <select
-                                        value={formData.category}
-                                        onChange={(e) =>
-                                            setFormData({ ...formData, category: e.target.value })
-                                        }
-                                        className="w-full px-3.5 py-2.5 text-xs bg-[#fff8f5] border border-[#e3bebd]/60 rounded-xl focus:outline-none focus:border-[#9e0027] text-[#1e1b18] capitalize"
-                                    >
-                                        <option value="base">Crust Base</option>
-                                        <option value="sauce">Sauce</option>
-                                        <option value="cheese">Cheese</option>
-                                        <option value="veggie">Veggie Topping</option>
-                                    </select>
+                                    <div className="relative w-full">
+                                        <select
+                                            value={formData.category}
+                                            onChange={(e) =>
+                                                setFormData({ ...formData, category: e.target.value })
+                                            }
+                                            className="w-full appearance-none pl-3.5 pr-9 py-2.5 text-xs bg-[#fff8f5] border border-[#e3bebd]/60 rounded-xl focus:outline-none focus:border-[#9e0027] focus:ring-2 focus:ring-[#9e0027]/20 text-[#1e1b18] capitalize cursor-pointer transition-all"
+                                        >
+                                            <option value="base">Crust Base</option>
+                                            <option value="sauce">Sauce</option>
+                                            <option value="cheese">Cheese</option>
+                                            <option value="veggie">Veggie Topping</option>
+                                        </select>
+                                        <ChevronDown className="w-4 h-4 text-[#5b4040] absolute right-3 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                    </div>
                                 </div>
 
                                 <div className="grid grid-cols-2 gap-3">
